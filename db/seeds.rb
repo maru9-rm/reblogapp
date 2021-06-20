@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Article.create({title: 'test1', content: '素晴らしい記事でっす'})
+Article.create({title: 'テストテスト', content: '素晴らしい記事でっす素晴らしい記事でっす'})
+Article.create({title: 'てっすとー', content: '素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす'})
+Article.create({title: 'テストマーン', content: '素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす'})
+Article.create({title: 'てスゥとまあああん', content: '素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす素晴らしい記事でっす'})
+# rails db:seed　でコンソール使わずにダミー記事を作成できる
