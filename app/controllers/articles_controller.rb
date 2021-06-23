@@ -1,11 +1,17 @@
 class ArticlesController < ApplicationController
     # コントローラー名は複数形を使う
+
+    before_action :set_article, only: [:show, :edit, :update]
+    # DRY don't repeat yourself
+    # 同じコードを何度も書かない　というルール @article = ~~　というコードが三箇所出てきていたので、beforeアクションでまとめてやっちゃう。
+    # set_articleはprivateで設定。 
+    #　onlyで使用するアクションを指定する。
+
     def index
         @articles = Article.all
     end
 
     def show
-        @article = Article.find(params[:id])
     end
     
     def new
@@ -26,11 +32,10 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+
     end
     
     def update
-        @article = Article.find(params[:id])
         if @article.update(article_params)
           redirect_to article_path(@article), notice: '更新できました'
         else
@@ -53,4 +58,9 @@ class ArticlesController < ApplicationController
         params.require(:article).permit(:title, :content)
     end
     # データを変更されても保存されないように保存できる内容を制限(ストロングパラメータ)
+
+    def set_article
+        @article = Article.find(params[:id])
+        # 何度も使うコードは定義して使い回す！
+    end
 end

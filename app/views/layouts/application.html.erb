@@ -23,7 +23,16 @@
     <%# flashというハッシュを持っていたら表示。keyはnoticeとかerrorとか %>
 
     <header class="header">
-      <p class="header_pageTitle">新着記事</p>
+      <div class="header_logos">
+        <% if !current_page?(root_path) %>
+        <%# !を頭につけるのは、　〜以外　という意味。この場合、「現在いるのがルートパス以外なら」となる。　%>
+          <%= link_to :back do %>
+          <%# 一つ前のページに戻るというリンクを作成 %>
+            <%= image_tag 'back.svg', class: 'header_back' %>
+          <% end %>
+        <% end %>
+        <p class="header_pageTitle">BlogApp</p>
+      </div>
       <div class="dropdown">
         <%= image_tag 'default-avatar.png', class: 'header_avatar dropbtn' %>
         <div class="dropdown-content">
