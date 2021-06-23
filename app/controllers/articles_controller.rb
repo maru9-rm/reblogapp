@@ -39,6 +39,13 @@ class ArticlesController < ApplicationController
         end
     end
 
+    def destroy
+        article = Article.find(params[:id])
+        # @はつける必要ない。なぜならビューで使うわけじゃないから。
+        article.destroy!
+        # データを渡すわけじゃないので失敗するわけない、失敗したときはアプリがおかしいので例外が発生するように！をつける
+        redirect_to root_path, notice: '削除に成功しました'
+    end
     
     private
 
