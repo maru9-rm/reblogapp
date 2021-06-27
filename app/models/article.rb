@@ -3,10 +3,15 @@
 # Table name: articles
 #
 #  id         :integer          not null, primary key
-#  content    :text
-#  title      :string
+#  content    :text             not null
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer          not null
+#
+# Indexes
+#
+#  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
   validates :title, presence: true
@@ -23,9 +28,20 @@ class Article < ApplicationRecord
   # よく使うのはネットで検索かけたら出てくるのでググろう。
   # https://rubular.com/ 正規表現はこちらで確認しよう！
 
+
+  belongs_to :user
+  # マイグレーションファイルでデータベース上では関連づいたが、activerecord上では紐づいてないので、モデル上で関連づけを行う。
+  # articles側はbelongs_toを設定する。
+
+  def author_name
+    user.display_name
+    # userモデルに存在するdisplay_nameを持ってきてる
+  end
+
   def display_created_at
     I18n.l(created_at, format: :default)
     # この表記だと何やってるのかわかりにくいし、何度か使い回すので、DRY的にも変数化してしまう。
     # I18n 国際化するクラス
   end
+
 end

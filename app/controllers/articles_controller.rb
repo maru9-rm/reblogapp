@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   # コントローラー名は複数形を使う
 
-  before_action :set_article, only: %i[show edit update]
+  before_action :set_article, only: [:show]
   # DRY don't repeat yourself
   # 同じコードを何度も書かないというルール @article = ~~ というコードが三箇所出てきていたので、beforeアクションでまとめてやっちゃう。
   # set_articleはprivateで設定。
@@ -19,12 +19,13 @@ class ArticlesController < ApplicationController
   def show; end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.build
     # 空っぽのアーティクル、ガワを作成
+    # current_userでログインしているユーザーを取れる
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to article_path(@article), notice: '保存できたよ'
     # notice: でフラッシュメッセージにテキスト(ハッシュ)を持たせてリクエストを送ることができる。
@@ -35,9 +36,12 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @article = current_user.articles.find(params[:id])
+  end
 
   def update
+    @article = current_user.articles.find(params[:id])
     if @article.update(article_params)
       redirect_to article_path(@article), notice: '更新できました'
     else
@@ -47,7 +51,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    article = Article.find(params[:id])
+    article = current_user.articles.find(params[:id])
     # @はつける必要ない。なぜならビューで使うわけじゃないから。
     article.destroy!
     # データを渡すわけじゃないので失敗するわけない、失敗したときはアプリがおかしいので例外が発生するように！をつける
