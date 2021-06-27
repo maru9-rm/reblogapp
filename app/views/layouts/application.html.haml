@@ -20,9 +20,12 @@
           = link_to :back do
             = image_tag 'back.svg', class: 'header_back'
         %p.header_pageTitle BlogApp
-      .dropdown
-        = image_tag 'default-avatar.png', class: 'header_avatar dropbtn'
-        .dropdown-content
-          %a{:href => "#"} プロフィール
-          %a{:href => "#"} ログアウト
+      - if user_signed_in? # ログインしてるかどうかチェックするメソッド
+        .dropdown
+          = image_tag 'default-avatar.png', class: 'header_avatar dropbtn'
+          .dropdown-content
+            %a{:href => "#"} プロフィール
+            = link_to 'ログアウト', destroy_user_session_path, data: { method: 'delete' } # sessionをぶち壊す！
+      - else # elseでログインしてない場合の処理を書く。
+        = link_to 'ログイン', new_user_session_path, class: 'header_loginBtn'
     = yield
