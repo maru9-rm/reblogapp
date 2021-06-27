@@ -3,9 +3,14 @@ class ArticlesController < ApplicationController
 
   before_action :set_article, only: %i[show edit update]
   # DRY don't repeat yourself
-  # 同じコードを何度も書かない　というルール @article = ~~　というコードが三箇所出てきていたので、beforeアクションでまとめてやっちゃう。
+  # 同じコードを何度も書かないというルール @article = ~~ というコードが三箇所出てきていたので、beforeアクションでまとめてやっちゃう。
   # set_articleはprivateで設定。
-  # 　onlyで使用するアクションを指定する。
+  # onlyで使用するアクションを指定する。
+
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  # []の中のアクションはログインしてないと使えない！という記述
+
+
 
   def index
     @articles = Article.all

@@ -19,10 +19,9 @@ class Article < ApplicationRecord
   validates :content, uniqueness: true
   # 内容が一意である(全く同じ内容のものがない)
 
-  validates :title, format: { with: /\A(?!\@)/ }
+  validates :title, format: { with: /\A(?!@)/ }
   # よく使うのはネットで検索かけたら出てくるのでググろう。
   # https://rubular.com/ 正規表現はこちらで確認しよう！
-
 
   def display_created_at
     I18n.l(created_at, format: :default)

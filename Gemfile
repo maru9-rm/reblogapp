@@ -22,8 +22,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'annotate'
-gem 'hamlit'
 # bundle install 後に rails g annotate:install を実行し、 rails db:migrate
+gem 'devise'
+# bundle install したら rails g devise:install を実行する そのあとは指示に従って操作を！
+# 最後にUserモデルを作成しましょう。rails g devise User → rails db:migrate
+gem 'hamlit'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -46,6 +49,8 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'erb2haml'
+  # bundle exec rake haml:replace_erbs
+
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
