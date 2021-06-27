@@ -21,4 +21,22 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :articles, dependent: :destroy
+  # マイグレーションファイルでデータベース上では関連づいたが、activerecord上では紐づいてないので、モデル上で関連づけを行う。
+  # articles側はbelongs_toを設定する。
+  # dependent: :destroy userが削除された時に配下?のarticleも削除される、というオプション
+
+
+  def has_written?(article)
+    articles.exists?(id: article.id)
+    # exists?条件に合うやつがあるかないかを判別するメソッド
+  end
+
+  def display_name
+    self.email.split('@').first
+    # 「起点」の「Eメール」を「分割したもの」の「最初」
+  end
+
+
 end
