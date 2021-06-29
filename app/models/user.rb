@@ -27,16 +27,13 @@ class User < ApplicationRecord
   # articles側はbelongs_toを設定する。
   # dependent: :destroy userが削除された時に配下?のarticleも削除される、というオプション
 
-
   def has_written?(article)
     articles.exists?(id: article.id)
     # exists?条件に合うやつがあるかないかを判別するメソッド
   end
 
   def display_name
-    self.email.split('@').first
+    email.split('@').first
     # 「起点」の「Eメール」を「分割したもの」の「最初」
   end
-
-
 end

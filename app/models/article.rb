@@ -28,6 +28,7 @@ class Article < ApplicationRecord
   # よく使うのはネットで検索かけたら出てくるのでググろう。
   # https://rubular.com/ 正規表現はこちらで確認しよう！
 
+  has_many :comments, dependent: :destroy
 
   belongs_to :user
   # マイグレーションファイルでデータベース上では関連づいたが、activerecord上では紐づいてないので、モデル上で関連づけを行う。
@@ -43,5 +44,4 @@ class Article < ApplicationRecord
     # この表記だと何やってるのかわかりにくいし、何度か使い回すので、DRY的にも変数化してしまう。
     # I18n 国際化するクラス
   end
-
 end
