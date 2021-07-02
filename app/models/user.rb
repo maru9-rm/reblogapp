@@ -27,13 +27,44 @@ class User < ApplicationRecord
   # articles側はbelongs_toを設定する。
   # dependent: :destroy userが削除された時に配下?のarticleも削除される、というオプション
 
+  has_one :profile, dependent: :destroy
+  # 1対1の関係なのでmanyじゃなくてoneだし、単数系を使う
+
+
+  delegate :birthday, :age, :gender, to: :profile, allow_nil: true
+  # profileからbirthdayとageとgenderをとってきてnillでもオッケーにする。という記述。これにてぼっち演算子を使わなくてもよくなる。
+
   def has_written?(article)
     articles.exists?(id: article.id)
     # exists?条件に合うやつがあるかないかを判別するメソッド
   end
 
   def display_name
-    email.split('@').first
-    # 「起点」の「Eメール」を「分割したもの」の「最初」
+    profile&.nickname || self.email.split('@').first
+    # &.ぼっち演算子 profileがnillじゃない場合だけnicknameという処理を行う。
+    # ||以下はプロフィールが設定されてないときの処理
+    # email.split('@').first は「起点」の「Eメール」を「分割したもの」の「最初」
+
   end
+
+  # def birthday
+  #   profile&.birthday
+  # end
+
+  # def gender
+  #   profile&.gender
+  # end
+
+  def prepare_profile
+    profile || build_profile
+  end
+
+  def avatar_image
+    if profile&.avatar&.attached? # プロフィールがnilじゃなくてavatarがnilじゃなければattachされてるか確認
+      profile.avatar
+    else
+      'default-avatar.png'
+    end
+  end
+
 end
