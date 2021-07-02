@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: %i[new create]
   end
+
+  resource :profile, only: %i[show edit update]
+  # resourceと単数系であるのは１対１の関係だから！indexいらねえから！
 end
 
 # resourcesは１行だけで、よく使うindex,show,createなど諸々のを設定してくれる
