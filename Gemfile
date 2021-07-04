@@ -29,7 +29,12 @@ gem 'devise'
 gem 'hamlit'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+# ↑アクションテキスト入れるためにコメントアウトしてbundle install！
+# これとは別にターミナルで 以下三つを実行すること。
+# brew install imagemagick
+# bundle exec rails action_text:install
+# bundle exec rails webpacker:install
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
