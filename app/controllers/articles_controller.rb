@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :eyecatch)
   end
   # データを変更されても保存されないように保存できる内容を制限(ストロングパラメータ)
 
