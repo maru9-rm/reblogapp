@@ -9,6 +9,9 @@
 @import 'common';
 @import 'profile';
 
+@import 'actiontext';
+@import 'trix/dist/trix.css';
+// actiontextを導入するとactiontext.scssが自動で作成されるので、読み込めるようにする。
 
 html {
   word-spacing: 1px;
