@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments, only: %i[new create]
+
+    resource :like, only: %i[create destroy] # likeのIDを指定しなくていいようにresource
   end
+
+  resources :favorites, only: [:index]
 
   resource :profile, only: %i[show edit update]
   # resourceと単数系であるのは１対１の関係だから！indexいらねえから！

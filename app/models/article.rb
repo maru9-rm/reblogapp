@@ -14,6 +14,10 @@
 #  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
+
+  has_one_attached :eyecatch
+  #画像を持たせるための設定
+
   validates :title, presence: true
   # validate(検証) presence→入力されていないとだめ！
   validates :title, length: { minimum: 2, maximum: 100 }
@@ -30,6 +34,8 @@ class Article < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
+  has_many :likes, dependent: :destroy
+
   belongs_to :user
   # マイグレーションファイルでデータベース上では関連づいたが、activerecord上では紐づいてないので、モデル上で関連づけを行う。
   # articles側はbelongs_toを設定する。
@@ -44,4 +50,10 @@ class Article < ApplicationRecord
     # この表記だと何やってるのかわかりにくいし、何度か使い回すので、DRY的にも変数化してしまう。
     # I18n 国際化するクラス
   end
+
+  def like_count
+    likes.count
+  end
+    # countメソッド 数えることができる。
+
 end

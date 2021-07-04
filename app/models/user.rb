@@ -29,7 +29,12 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   # 1対1の関係なのでmanyじゃなくてoneだし、単数系を使う
+  has_many :likes, dependent: :destroy
 
+  has_many :likes, dependent: :destroy
+
+  has_many :favorite_articles, through: :likes, source: :article 
+  # likesという中間テーブルを通して(through)、article(source)を取れる。
 
   delegate :birthday, :age, :gender, to: :profile, allow_nil: true
   # profileからbirthdayとageとgenderをとってきてnillでもオッケーにする。という記述。これにてぼっち演算子を使わなくてもよくなる。
@@ -39,12 +44,16 @@ class User < ApplicationRecord
     # exists?条件に合うやつがあるかないかを判別するメソッド
   end
 
+
+  def has_liked?(article)
+    likes.exists?(article_id: article.id)
+  end
+
   def display_name
-    profile&.nickname || self.email.split('@').first
+    profile&.nickname || email.split('@').first
     # &.ぼっち演算子 profileがnillじゃない場合だけnicknameという処理を行う。
     # ||以下はプロフィールが設定されてないときの処理
     # email.split('@').first は「起点」の「Eメール」を「分割したもの」の「最初」
-
   end
 
   # def birthday
@@ -66,5 +75,4 @@ class User < ApplicationRecord
       'default-avatar.png'
     end
   end
-
 end

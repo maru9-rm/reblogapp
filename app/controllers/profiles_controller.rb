@@ -16,10 +16,8 @@ class ProfilesController < ApplicationController
     # あるいは
     # @profile = current_user.profile || current_user.build_profile
     # だが、よく使うのでモデル側に移してメソッド化している。
-
   end
   # 新しいガワを何度も作る必要がないからeditをnewの代用としても使うことでnewを省ける。ってことだと思う。多分。
-
 
   def update
     @profile = current_user.prepare_profile
@@ -34,6 +32,7 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   def profile_params
     params.require(:profile).permit(
       :nickname,
@@ -44,5 +43,4 @@ class ProfilesController < ApplicationController
       :avatar
     )
   end
-
 end
