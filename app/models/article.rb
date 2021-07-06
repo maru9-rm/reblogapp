@@ -13,9 +13,8 @@
 #  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
-
   has_one_attached :eyecatch
-  #画像を持たせるための設定
+  # 画像を持たせるための設定
 
   has_rich_text :content
   # actiontextを導入したので、それを使う設定。よって既存のcontentのカラムが不要になるので削除する。
@@ -26,7 +25,6 @@ class Article < ApplicationRecord
   # validate(検証) presence→入力されていないとだめ！
   validates :title, length: { minimum: 2, maximum: 100 }
   # length 字数制限を儲ける
-
 
   validates :content, presence: true
   # validates :content, length: { minimum: 10 }
@@ -60,6 +58,5 @@ class Article < ApplicationRecord
   def like_count
     likes.count
   end
-    # countメソッド 数えることができる。
-
+  # countメソッド 数えることができる。
 end

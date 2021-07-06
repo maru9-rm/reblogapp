@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
-    before_action :authenticate_user!
-  
-    def index
-      @articles = current_user.favorite_articles # has_many favorite_atriclesだから取れる。
-    end
+  before_action :authenticate_user!
+
+  def index
+    @articles = current_user.favorite_articles # has_many favorite_atriclesだから取れる。
+  end
 end

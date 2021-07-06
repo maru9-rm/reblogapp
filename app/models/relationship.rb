@@ -19,7 +19,7 @@
 #  following_id  (following_id => users.id)
 #
 class Relationship < ApplicationRecord
-    belongs_to :follower, class_name: 'User'
-    belongs_to :following, class_name: 'User'
-    # 本当のクラス名を明記。
+  belongs_to :follower, class_name: 'User'
+  belongs_to :following, class_name: 'User'
+  # 本当のクラス名を明記。
 end

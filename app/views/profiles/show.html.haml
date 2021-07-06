@@ -1,17 +1,1 @@
-.container.profilePage
-  .profilePage_user
-    .profilePage_user_image
-      = image_tag current_user.avatar_image
-    .profilePage_user_basicInfo
-      .profilePage_user_name
-        .profilePage_user_displayName
-          #{current_user.display_name}（#{current_user.age}・#{I18n.t("enum.genders.#{current_user.gender}")}）
-        -# １行に色々変数などを表示したいときは#{}でそれぞれ囲む
-        -# I18nで多言語化・enumの中のgenderのところを参照するという感じ。階層をおってとってきてくれるのがこのt()というやつ
-        .profilePage_user_actionButton
-          = link_to 'Edit', edit_profile_path
-      .profilePage_user_introduction
-        = current_user.profile&.introduction
-
-  - current_user.articles.each do |article|
-    = render 'commons/article', article: article
+= render 'commons/profile', user: current_user
