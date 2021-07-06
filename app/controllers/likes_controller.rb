@@ -1,12 +1,11 @@
 class LikesController < ApplicationController
-    before_action :authenticate_user!
-  
-    def create
-      article = Article.find(params[:article_id])
-      article.likes.create!(user_id: current_user.id) # article has many likes だから.likesができる
-      redirect_to article_path(article)
-    end
+  before_action :authenticate_user!
 
+  def create
+    article = Article.find(params[:article_id])
+    article.likes.create!(user_id: current_user.id) # article has many likes だから.likesができる
+    redirect_to article_path(article)
+  end
 
   def destroy
     article = Article.find(params[:article_id])
@@ -15,5 +14,4 @@ class LikesController < ApplicationController
     like.destroy!
     redirect_to article_path(article)
   end
-
 end

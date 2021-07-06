@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
-  has_many :favorite_articles, through: :likes, source: :article 
+  has_many :favorite_articles, through: :likes, source: :article
   # likesという中間テーブルを通して(through)、article(source)を取れる。
 
   has_many :following_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
@@ -45,28 +45,29 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
-
-
-
   delegate :birthday, :age, :gender, to: :profile, allow_nil: true
   # profileからbirthdayとageとgenderをとってきてnillでもオッケーにする。という記述。これにてぼっち演算子を使わなくてもよくなる。
 
   def follow!(user)
-    following_relationships.create!(following_id: user.id)
+    user_id = get_user_id(user)
+    following_relationships.create!(following_id: user_id)
     # following_relationshipsテーブルに新たなデータを作ります。その際のfollowing_idは引数のユーザーのidです。みたいな感じ？
   end
 
   def unfollow!(user)
-    relation = following_relationships.find_by!(following_id: user.id)
+    user_id = get_user_id(user)
+    relation = following_relationships.find_by!(following_id: user_id)
     relation.destroy!
   end
 
+  def has_followed?(user)
+    following_relationships.exists?(following_id: user.id)
+  end
 
   def has_written?(article)
     articles.exists?(id: article.id)
     # exists?条件に合うやつがあるかないかを判別するメソッド
   end
-
 
   def has_liked?(article)
     likes.exists?(article_id: article.id)
@@ -96,6 +97,15 @@ class User < ApplicationRecord
       profile.avatar
     else
       'default-avatar.png'
+    end
+  end
+
+  private
+  def get_user_id(user)
+    if user.is_a?(User) # is_a? は()内で指定したクラスのインスタンスであるか確認するメソッド
+      user.id
+    else
+      user
     end
   end
 end

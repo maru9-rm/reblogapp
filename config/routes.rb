@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resource :like, only: %i[create destroy] # likeのIDを指定しなくていいようにresource
   end
 
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+  end
+
   resources :favorites, only: [:index]
 
   resource :profile, only: %i[show edit update]
