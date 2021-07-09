@@ -1,8 +1,1 @@
-.container
-  = render 'tabs'
-  - @articles.each do |article|
-    = render 'commons/article', article: article
-    -# commonsフォルダの部分テンプレを読み込む、という書き方
-= link_to new_article_path do
-  .float_btn
-    %i.fa.fa-plus
+= render 'commons/articles', articles: @articles
