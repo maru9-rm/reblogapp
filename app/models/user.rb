@@ -73,13 +73,6 @@ class User < ApplicationRecord
     likes.exists?(article_id: article.id)
   end
 
-  def display_name
-    profile&.nickname || email.split('@').first
-    # &.ぼっち演算子 profileがnillじゃない場合だけnicknameという処理を行う。
-    # ||以下はプロフィールが設定されてないときの処理
-    # email.split('@').first は「起点」の「Eメール」を「分割したもの」の「最初」
-  end
-
   # def birthday
   #   profile&.birthday
   # end
@@ -92,15 +85,8 @@ class User < ApplicationRecord
     profile || build_profile
   end
 
-  def avatar_image
-    if profile&.avatar&.attached? # プロフィールがnilじゃなくてavatarがnilじゃなければattachされてるか確認
-      profile.avatar
-    else
-      'default-avatar.png'
-    end
-  end
-
   private
+
   def get_user_id(user)
     if user.is_a?(User) # is_a? は()内で指定したクラスのインスタンスであるか確認するメソッド
       user.id
@@ -109,3 +95,6 @@ class User < ApplicationRecord
     end
   end
 end
+
+# モデルには機能的なメソッドやインスタンスを書くべきで、見た目のことを書くのは別の場所に任せたほうがスッキリする
+# とうことで見た目のことはActiveDecoratorというgemを入れて管理しよう！

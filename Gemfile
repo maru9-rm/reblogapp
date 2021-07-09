@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'annotate'
 # bundle install 後に rails g annotate:install を実行し、 rails db:migrate
+gem 'active_decorator'
+# bundle installしたら rails g decorator user を実行！
+
 gem 'devise'
 # bundle install したら rails g devise:install を実行する そのあとは指示に従って操作を！
 # 最後にUserモデルを作成しましょう。rails g devise User → rails db:migrate
