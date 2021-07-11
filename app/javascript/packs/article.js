@@ -1,3 +1,7 @@
+// 新しいjsファイルを作ったらサーバーを再起動しよう
+// ctrl+C サーバーを落とす
+// bin/webpack-dev-server サーバーを起動
+
 import $ from 'jquery'
 // jQueryの読み込みを行う
 

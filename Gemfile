@@ -74,17 +74,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-# #####################JavaScript関連##############################
-# yarnの導入はgemfileじゃなくてターミナルから導入する
-# yarn add jquery
-# package.jsonはjavascript版gemfileと思ってよし！
-
-# JavaScriptの読み込みを早くするためにwebpackを入れる。
-# ターミナルで bin/webpack-dev-server を実行してサーバーを立ち上げていると、変更して保存かけると自動でwebpackerに変更をかけてくれる。
-# つまりjavascript周りをいじってる時はこのサーバーを立ち上げておこう。
-
-# webpack モジュールパンドラと言われるやつ。複数のJavaスクリプトファイルを読み込んで一つのファイルに出力する
-
-# axiosの導入
-# yarn add axios をターミナルで実行
-# application.js に import axios from 'axios' を記述
