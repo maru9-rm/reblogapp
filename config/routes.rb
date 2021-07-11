@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: %i[new create]
 
-    resource :like, only: %i[create destroy] # likeのIDを指定しなくていいようにresource
+    resource :like, only: %i[show create destroy] # likeのIDを指定しなくていいようにresource
   end
 
   resources :accounts, only: [:show] do
