@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
@@ -18,3 +17,20 @@ require("channels")
 
 require("trix")
 require("@rails/actiontext")
+
+
+//   JavaScriptのデバッグ方法
+//   debugger
+//   prybybugのように処理を止める
+//   検証中にしか起こらないので注意
+//   console.log('aaaaaa')
+//   みたいなのをどこかに入れておいて、エラーがそれの前に出てるのか後に出てるのかをみる(検証のmessageのところ)
+
+
+// API
+// ApplicationProgrammingInterfaceの略。プログラム同士の
+// 繋ぎ込みを行うために存在するもの
+
+// json ajaxの場合はリクエストに対してハッシュのようなデータを返す。このデータをjsonと呼ぶ。
+
+
