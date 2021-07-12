@@ -9,8 +9,6 @@ class LikesController < ApplicationController
     # render json でjsonだけを返すようにする
   end
 
-
-
   def create
     article = Article.find(params[:article_id])
     article.likes.create!(user_id: current_user.id) # article has many likes だから.likesができる

@@ -25,6 +25,10 @@ gem 'annotate'
 # bundle install 後に rails g annotate:install を実行し、 rails db:migrate
 gem 'active_decorator'
 # bundle installしたら rails g decorator user を実行！
+gem 'active_model_serializers'
+# ターミナルで rails g serializer Comment(インスタンスの名前) を実行。
+# appのserializerにファイルができる
+# インスタンスをいい感じにjsonに変換してくれる
 
 gem 'devise'
 # bundle install したら rails g devise:install を実行する そのあとは指示に従って操作を！
@@ -73,4 +77,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
