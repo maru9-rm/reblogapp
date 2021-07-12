@@ -15,10 +15,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def show
-    @comments = @article.comments
-    # set_articleで@articleを取得しているから@articleが使える
-  end
+  def show; end
 
   def new
     @article = current_user.articles.build
