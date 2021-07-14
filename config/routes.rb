@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  # letter_opener_webに記載してある。↑  development環境ならこのリンクにアクセスするとメール見れるよ。
+
   devise_for :users
   root to: 'articles#index'
   # root_pathの設定
