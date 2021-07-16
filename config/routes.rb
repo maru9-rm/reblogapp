@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
+  # キューに何が溜まってるか確認できるようにする
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   # letter_opener_webに記載してある。↑  development環境ならこのリンクにアクセスするとメール見れるよ。
 
