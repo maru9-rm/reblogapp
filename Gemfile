@@ -35,6 +35,12 @@ gem 'devise'
 # 最後にUserモデルを作成しましょう。rails g devise User → rails db:migrate
 gem 'hamlit'
 
+gem 'sidekiq'
+# railsで非同期処理を実行するgem
+# 使い方はググれば出てくるのでそれ見ながらやろう。
+# サーバーを立ち上げるときは bundle exec sidekiq -C config/sidekiq.yml
+
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 # ↑アクションテキスト入れるためにコメントアウトしてbundle install！
