@@ -40,7 +40,6 @@ gem 'sidekiq'
 # 使い方はググれば出てくるのでそれ見ながらやろう。
 # サーバーを立ち上げるときは bundle exec sidekiq -C config/sidekiq.yml
 
-
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 # ↑アクションテキスト入れるためにコメントアウトしてbundle install！

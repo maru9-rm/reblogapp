@@ -1,0 +1,6 @@
+ja:
+  articles:
+    comment_list: 'コメント一覧'
+
+
+    # I18n.t('articles.comment_list') みたいな感じで使う
