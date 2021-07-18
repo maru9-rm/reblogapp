@@ -31,3 +31,4 @@
       - else # elseでログインしてない場合の処理を書く。
         = link_to 'ログイン', new_user_session_path, class: 'header_loginBtn'
     = yield
+    = render 'layouts/footer'
