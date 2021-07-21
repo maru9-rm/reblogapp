@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class Apps::FavoritesController < Apps::ApplicationController
   before_action :authenticate_user!
 
   def index
