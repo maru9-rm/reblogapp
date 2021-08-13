@@ -30,6 +30,9 @@ gem 'active_model_serializers'
 # appのserializerにファイルができる
 # インスタンスをいい感じにjsonに変換してくれる
 
+gem 'faker'
+# ダミーデータを簡単に作成するgem
+
 gem 'devise'
 # bundle install したら rails g devise:install を実行する そのあとは指示に従って操作を！
 # 最後にUserモデルを作成しましょう。rails g devise User → rails db:migrate
@@ -58,6 +61,12 @@ group :development, :test do
   # デバックツール！ binding.pry　を挿入した場所で止まってその状態で変数の確認とかをできる
   gem 'rubocop-rails'
   # rubocop.ymlというファイルを作って、設定をして、bundle exec rubocop -a で自動で色々直してくれる
+  gem 'rspec-rails'
+  # rails g rspec:install を実行
+  # rails g rspec:model article を実行(articleの部分はモデル名)
+  # テストの実行はターミナルで bundle exec rspec spec/models/article_spec.rb を実行
+  gem 'factory_bot_rails'
+
 end
 
 group :development do
