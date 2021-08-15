@@ -63,8 +63,15 @@ group :development, :test do
   # rubocop.ymlというファイルを作って、設定をして、bundle exec rubocop -a で自動で色々直してくれる
   gem 'rspec-rails'
   # rails g rspec:install を実行
-  # rails g rspec:model article を実行(articleの部分はモデル名)
+  # モデルのテスト rails g rspec:model article を実行(articleの部分はモデル名)
   # テストの実行はターミナルで bundle exec rspec spec/models/article_spec.rb を実行
+  # コントローラーのテスト rails g rspec:request article を実行(articleの部分はコントローラー名)
+  # テストの実行はターミナルで bundle exec rspec spec/requests/articles_spec.rb
+  # apiのテスト rails g rspec:request api/comment 実行
+
+
+
+
   gem 'factory_bot_rails'
 
 end
